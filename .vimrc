@@ -1,23 +1,40 @@
-echo "MY VIMRC LOADED"
+echo ".vimrc loaded, lets get to work!"
 
 set nocompatible    " be iMproved, required
 filetype off        " required
 syntax enable       " enable syntax processing
-set background=light
-colorscheme Solarized
 
+
+
+"Visual stuff
+set t_Co=256
+set background=dark
+colorscheme solarized
 
 "mostly python and bash"
 
 set tabstop=4       " number of visual spaces per TAB
 set softtabstop=4   " number of spaces in tab when editing
-set number          " show line numbers
+set expandtab       " tabs are spaces
+
+"Random stuff
+set number		        " show line numbers
 set cursorline          " highlight current line
 set wildmenu            " visual autocomplete for command menu
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 set showmatch           " highlight matching [{()}]
+set lazyredraw          " redraw only when we need to.
+set showmode
+
+"MOVEMENT SETTINGS
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
 nnoremap <space> :nohlsearch<CR>" turn off search highlight
+
 "most of the stuff is from this great site:"
 "http://dougblack.io/words/a-good-vimrc.html"
 
@@ -38,8 +55,7 @@ Plugin 'VundleVim/Vundle.vim'
 " plugin on GitHub repo
 "Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
+"Plugin 'L9' " Git plugin not hosted on GitHub
 "Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 "Plugin 'file:///home/gmarik/path/to/plugin'
