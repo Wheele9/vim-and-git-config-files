@@ -44,14 +44,44 @@ set laststatus=2
 " " dialogue asking if you wish to save changed files.
 set confirm
 "
+" More natural split opening
+" Open new split panes to right and bottom, 
+" which feels more natural than Vim’s default:
+set splitbelow
+set splitright
 
+"different key mappings for easy navigation between splits to save 
+"a keystroke. So instead of ctrl-w then j, it’s just ctrl-j:
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+"to close a windows:
+" press <CTRL>c
+nnoremap <C-C> <C-W><C-C>
+
+"to close the non acive windows:
+"press <CTRL>o
+nnoremap <C-O> <C-W><C-O>
+
+ "to select previous window:
+ "press <CTRL>p                    
+nnoremap <C-P> <C-W><C-P> 
+
+"Create a new empty window vertically
+nnoremap <C-N> :vnew<CR>    
+ "Create a new empty window horizontally
+nnoremap <C-M> :new<CR>
+"
+"
+"
 "MOVEMENT SETTINGS
 let mapleader = ","
 :let maplocalleader = "\\"
 
 
 "edit ~/.vimrc:
-nnoremap <leader>ev :split $MYVIMRC<cr>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 "move lines one below
 
 nnoremap - O<esc>j
@@ -79,6 +109,7 @@ nnoremap <leader><space> :nohlsearch<CR>
 
 " Vim will surround the word in double quotes!
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+nnoremap OBOBOBOBOBOB
 
 inoremap jk <esc>
 inoremap <esc> <nop>
