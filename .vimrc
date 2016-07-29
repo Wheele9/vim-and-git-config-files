@@ -1,4 +1,5 @@
-echo ".vimrc loaded, lets get to work!ohyeaah:w"
+echom ".vimrc loaded, lets get to work!ohyeaah:w"
+echom ">^.^<"
 
 set nocompatible    " be iMproved, required
 filetype off        " required
@@ -42,27 +43,52 @@ set laststatus=2
 " Instead of failing a command because of unsaved changes, instead raise a
 " " dialogue asking if you wish to save changed files.
 set confirm
+"
 
 "MOVEMENT SETTINGS
+let mapleader = ","
+:let maplocalleader = "\\"
+
+
+"edit ~/.vimrc:
+nnoremap <leader>ev :split $MYVIMRC<cr>
+"move lines one below
+
+nnoremap - O<esc>j
 "
-" REAMPS
+"
+"
+" REMAPPING
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
 "nnoremap lr 
-
+nnoremap <F4> :ls<CR>
 nnoremap <F2> :echo 'Current time is ' . strftime('%c')<CR>
 nnoremap <F3> :so ~/.vimrc<CR>
  " turn off search highlight
 
-nnoremap <space> :nohlsearch<CR>
+nnoremap <leader><space> :nohlsearch<CR>
  "turn off search highlight
 "nnoremap rlv :so<space>.vimrc" 
 
 "most of the stuff is from this great site:"
-"http://dougblack.io/words/a-good-vimrc.html"
+"http://dougblack.io/words/a-good-vimrc.html" i
 
 
+
+" Vim will surround the word in double quotes!
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+
+inoremap jk <esc>
+inoremap <esc> <nop>
+
+
+"ABBREVIATIONS:
+
+:iabbrev @@   cz.matyas@gmail.com 
+:iabbrev ccopy Copyright 2016 Czémán Mátyás, all rights reserved.   
+:iabbrev tehn then
 
 
 " set the runtime path to include Vundle and initialize
@@ -71,7 +97,7 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
+" let Vundle "manage" Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 " The following are examples of different formats supported.
