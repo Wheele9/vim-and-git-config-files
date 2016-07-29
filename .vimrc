@@ -1,4 +1,4 @@
-echo ".vimrc loaded, lets get to work!"
+echo ".vimrc loaded, lets get to work!ohyeaah:w"
 
 set nocompatible    " be iMproved, required
 filetype off        " required
@@ -27,15 +27,37 @@ set hlsearch            " highlight matches
 set showmatch           " highlight matching [{()}]
 set lazyredraw          " redraw only when we need to.
 set showmode
-set hidden              " when working with buffers, opening a 
-                        "new file wont display an error message
-"MOVEMENT SETTINGS
+"The 'hidden' option, which allows you to re-use the same
+" window and switch from an unsaved buffer without saving it first. Also allows
+" you to keep an undo history for multiple files when re-using the same window
+" in this way. Note that using persistent undo also lets you undo in  multiple
+" files even in the same window, but is less efficient and is actually designed
+" for keeping undo history after closing Vim entirely. Vim will complain if you
+" try to quit without saving, and swap files will keep you safe if your computer crashes.
+set hidden 
 
+" Always display the status line, even if only one window is displayed
+set laststatus=2
+
+" Instead of failing a command because of unsaved changes, instead raise a
+" " dialogue asking if you wish to save changed files.
+set confirm
+
+"MOVEMENT SETTINGS
+"
+" REAMPS
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+"nnoremap lr 
 
-nnoremap <space> :nohlsearch<CR>" turn off search highlight
+nnoremap <F2> :echo 'Current time is ' . strftime('%c')<CR>
+nnoremap <F3> :so ~/.vimrc<CR>
+ " turn off search highlight
+
+nnoremap <space> :nohlsearch<CR>
+ "turn off search highlight
+"nnoremap rlv :so<space>.vimrc" 
 
 "most of the stuff is from this great site:"
 "http://dougblack.io/words/a-good-vimrc.html"
