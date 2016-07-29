@@ -22,15 +22,35 @@ set winheight=15
 
 set tabstop=4       " number of visual spaces per TAB
 set softtabstop=4   " number of spaces in tab when editing
+set shiftwidth=4
+set shiftround
 set expandtab       " tabs are spaces
+set colorcolumn=80
 
-"Other setting, TODO: organize
+
+" Useful settings
+set history=700
+set undolevels=700
+
+" Other setting, TODO: organize
 set virtualedit=all     " can move the cursor into illegal places
 set number		        " show line numbers
 set cursorline          " highlight current line
 set wildmenu            " visual autocomplete for command menu
+
+" Case insensitive search options
+set ignorecase
+set smartcase
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
+
+" Disable stupid backup and swap files 
+" - they trigger too many events
+" for file system watchers
+set nobackup
+set nowritebackup
+set noswapfile
+
 set showmatch           " highlight matching [{()}]
 set lazyredraw          " redraw only when we need to.
 set showmode
