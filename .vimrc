@@ -6,12 +6,18 @@ filetype off        " required
 syntax enable       " enable syntax processing
 
 
+" Quicksave command
+nnoremap <C-Z> :update<CR>
+vnoremap <C-Z> <C-C>:update<CR>
+inoremap <C-Z> <C-O>:update<CR>
 
 "Visual stuff
 set t_Co=256
 set background=dark
 colorscheme solarized
-
+"when working with multiple windows:
+"
+set winheight=15
 "mostly python and bash"
 
 set tabstop=4       " number of visual spaces per TAB
@@ -73,6 +79,11 @@ nnoremap <C-N> :vnew<CR>
  "Create a new empty window horizontally
 nnoremap <C-M> :new<CR>
 "
+"Rotate the windowsRotate windows upwards/leftwards.
+"The second window becomes the first one, the third one becomes the second one, etc.
+"The first window becomes the last window.  
+"The cursor remains in the same window.
+nnoremap <C-R> <C-W><C-R>
 "
 "
 "MOVEMENT SETTINGS
@@ -109,7 +120,6 @@ nnoremap <leader><space> :nohlsearch<CR>
 
 " Vim will surround the word in double quotes!
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
-nnoremap OBOBOBOBOBOB
 
 inoremap jk <esc>
 inoremap <esc> <nop>
@@ -117,7 +127,7 @@ inoremap <esc> <nop>
 
 "ABBREVIATIONS:
 
-:iabbrev @@   cz.matyas@gmail.com 
+:iabbrev @@  cz.matyas@gmail.com 
 :iabbrev ccopy Copyright 2016 Czémán Mátyás, all rights reserved.   
 :iabbrev tehn then
 
