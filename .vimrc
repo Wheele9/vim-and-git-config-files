@@ -1,23 +1,62 @@
+" Welcome messages
 echom ".vimrc loaded, lets get to work!ohyeaah:w"
 echom ">^.^<"
 
 set nocompatible    " be iMproved, required
 filetype off        " required
 syntax enable       " enable syntax processing
-
-
+set cpoptions=$
 " Quicksave command
 nnoremap <C-Z> :update<CR>
 vnoremap <C-Z> <C-C>:update<CR>
 inoremap <C-Z> <C-O>:update<CR>
 
-"Visual stuff
+
+let mapleader =" " 
+let maplocalleader = "\\"
+
+" Copy Paste words
+nnoremap <leader>y yiw
+nnoremap <leader>p viw"0p
+
+" Visual stuff
 set t_Co=256
-set background=dark
+set background=light
 colorscheme solarized
-"when working with multiple windows:
-"
+
+" MULTIPLE WINDOWS SETTINGS
+
 set winheight=15
+ 
+" More natural split opening
+" Open new split panes to right and bottom, 
+" which feels more natural than Vim’s default
+set splitbelow
+set splitright
+ 
+" different key mappings for easy navigation between splits to save 
+" a keystroke. So instead of ctrl-w then j, it’s just ctrl-j:
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+" To close a windows:
+" press <CTRL>c
+nnoremap <C-C> <C-W><C-C>
+
+" To close the non acive windows:
+" press <CTRL>o
+nnoremap <C-O> <C-W><C-O>
+
+" To select previous window:
+" press <CTRL>p                    
+nnoremap <C-P> <C-W><C-P> 
+
+"Create a new empty window vertically
+nnoremap <C-N> :vnew<CR>    
+ "Create a new empty window horizontally
+nnoremap <C-M> :new<CR>
+
 "mostly python and bash"
 
 set tabstop=4       " number of visual spaces per TAB
@@ -26,8 +65,11 @@ set shiftwidth=4
 set shiftround
 set expandtab       " tabs are spaces
 set colorcolumn=80
+set autoindent
 
 
+vnoremap W >gv
+vnoremap Q <gv
 " Useful settings
 set history=700
 set undolevels=700
@@ -52,74 +94,37 @@ set nowritebackup
 set noswapfile
 
 set showmatch           " highlight matching [{()}]
-set lazyredraw          " redraw only when we need to.
+":wset lazyredraw          " redraw only when we need to.
 set showmode
-"The 'hidden' option, which allows you to re-use the same
-" window and switch from an unsaved buffer without saving it first. Also allows
-" you to keep an undo history for multiple files when re-using the same window
-" in this way. Note that using persistent undo also lets you undo in  multiple
-" files even in the same window, but is less efficient and is actually designed
-" for keeping undo history after closing Vim entirely. Vim will complain if you
-" try to quit without saving, and swap files will keep you safe if your computer crashes.
+" The 'hidden' option, which allows you to re-use the same
+" window and switch from an unsaved buffer without saving it first.
 set hidden 
 
 " Always display the status line, even if only one window is displayed
 set laststatus=2
 
 " Instead of failing a command because of unsaved changes, instead raise a
-" " dialogue asking if you wish to save changed files.
+" dialogue asking if you wish to save changed files.
 set confirm
-"
-" More natural split opening
-" Open new split panes to right and bottom, 
-" which feels more natural than Vim’s default:
-set splitbelow
-set splitright
 
-"different key mappings for easy navigation between splits to save 
-"a keystroke. So instead of ctrl-w then j, it’s just ctrl-j:
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-"to close a windows:
-" press <CTRL>c
-nnoremap <C-C> <C-W><C-C>
-
-"to close the non acive windows:
-"press <CTRL>o
-nnoremap <C-O> <C-W><C-O>
-
- "to select previous window:
- "press <CTRL>p                    
-nnoremap <C-P> <C-W><C-P> 
-
-"Create a new empty window vertically
-nnoremap <C-N> :vnew<CR>    
- "Create a new empty window horizontally
-nnoremap <C-M> :new<CR>
-"
-"Rotate the windowsRotate windows upwards/leftwards.
-"The second window becomes the first one, the third one becomes the second one, etc.
-"The first window becomes the last window.  
-"The cursor remains in the same window.
+"Rotate the windows upwards/leftwards.
 nnoremap <C-R> <C-W><C-R>
-"
-"
-"MOVEMENT SETTINGS
-let mapleader = ","
-:let maplocalleader = "\\"
 
 
-"edit ~/.vimrc:
+" MOVEMENT SETTINGS
+
+
+" Edit ~/.vimrc in a new slit:
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-"move lines one below
 
+
+" Move lines one below
 nnoremap - O<esc>j
-"
-"
-"
-" REMAPPING
+
+"""""""""""""
+""REMAPPING:"
+"""""""""""""
+
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
@@ -144,12 +149,12 @@ nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 inoremap jk <esc>
 inoremap <esc> <nop>
 
-
+"""""""""""""""
 "ABBREVIATIONS:
-
-:iabbrev @@  cz.matyas@gmail.com 
-:iabbrev ccopy Copyright 2016 Czémán Mátyás, all rights reserved.   
-:iabbrev tehn then
+"""""""""""""""
+iabbrev @@  cz.matyas@gmail.com 
+iabbrev ccopy Copyright 2016 Czémán Mátyás, all rights reserved.   
+iabbrev tehn then
 
 
 " set the runtime path to include Vundle and initialize
