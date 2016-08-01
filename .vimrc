@@ -1,5 +1,5 @@
 " Welcome messages
-echom ".vimrc loaded, lets get to work!ohyeaah:w"
+echom ".vimrc loaded, lets get to work!ohyeaah"
 echom ">^.^<"
 
 
@@ -7,13 +7,23 @@ set nocompatible    " be iMproved, required
 filetype off        " required
 syntax enable       " enable syntax processing
 
+
+"Add $ sign at the end of CHANGE's command workspace
 set cpoptions=$
+
+" Backspace works like in other programs
+set backspace=2
+
+" Show commands in bottom bar
+set showcmd
+
 
 
 " Quicksave command
 nnoremap <C-Z> :update<CR>
-vnoremap <C-Z> <C-C>:update<CR>
-inoremap <C-Z> <C-O>:update<CR>
+
+" Move cursor to the middle of current line
+nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 
 
 let mapleader =" "
@@ -23,12 +33,13 @@ let maplocalleader = "\\"
 nnoremap <leader>y yiw
 nnoremap <leader>p viw"0p
 
+imap <C-d> <C-[>diwi
 " Visual stuff
 let g:solarized_termcolors=256
 set t_Co=256
 set background=light
 colorscheme solarized
- 
+
 " MULTIPLE WINDOWS SETTINGS
 
 set winheight=15
@@ -41,10 +52,10 @@ set splitright
 
 " different key mappings for easy navigation between splits to save
 " a keystroke. So instead of ctrl-w then j, it’s just ctrl-j:
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+"nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-L> <C-W><C-L>
+"nnoremap <C-H> <C-W><C-H>
 " To close a windows:
 " press <CTRL>c
 nnoremap <C-C> <C-W><C-C>
@@ -53,17 +64,27 @@ nnoremap <C-C> <C-W><C-C>
 " press <CTRL>o
 nnoremap <C-O> <C-W><C-O>
 
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-p> :TmuxNavigatePrevious<cr>
+
+
 " To select previous window:
 " press <CTRL>p
-nnoremap <C-P> <C-W><C-P>
+"nnoremap <C-P> <C-W><C-P>
 
 "Create a new empty window vertically
 nnoremap <C-N> :vnew<CR>
- "Create a new empty window horizontally
- nnoremap <C-M> :new<CR>
+"Create a new empty window horizontally
+nnoremap <C-M> :new<CR>
+" Open file in a new window
+nnoremap <C-B> :vnew<space>
 
-
- "mostly python and bash"
+"mostly python and bash"
 
 set tabstop=4       " number of visual spaces per TAB
 set softtabstop=4   " number of spaces in tab when editing
@@ -73,9 +94,10 @@ set expandtab       " tabs are spaces
 set colorcolumn=80
 set autoindent
 
-
+" Indent selected block by indentwidth
 vnoremap W >gv
 vnoremap Q <gv
+
 " Useful settings
  set history=700
  set undolevels=700
@@ -85,10 +107,17 @@ set virtualedit=all     " can move the cursor into illegal places
 set number                      " show line numbers
 set cursorline          " highlight current line
 set wildmenu            " visual autocomplete for command menu
+set ruler 
 
 " Case insensitive search options
 set ignorecase
 set smartcase
+
+
+
+
+
+
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 
@@ -109,6 +138,11 @@ set hidden
 
 " Always display the status line, even if only one window is displayed
 set laststatus=2
+
+"Set tab label to show tab number, filename, if modified ('+' is shown if the
+"current window in the tab has been modified):
+set guitablabel=%N/\ %t\ %M
+
 
 " Instead of failing a command because of unsaved changes, instead raise a
 " dialogue asking if you wish to save changed files.
@@ -136,27 +170,35 @@ nnoremap - O<esc>j
 "move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+
+
 "nnoremap lr
 nnoremap <F4> :ls<CR>
 nnoremap <F2> :echo 'Current time is ' . strftime('%c')<CR>
 nnoremap <F3> :so ~/.vimrc<CR>
- " turn off search highlight
 
+
+ " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
-  "turn off search highlight
+  "reload .vimrc file
 nnoremap rlv :so<space>.vimrc"<CR>
 
-  "most of the stuff is from this great site:"
-  "http://dougblack.io/words/a-good-vimrc.html" i
+" most of the stuff is from this great site:"
+" http://dougblack.io/words/a-good-vimrc.html" i
 
 
 
 
-  " Vim will surround the word in double quotes!
+" Vim will surround the word in double quotes!
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 
 inoremap jk <esc>
-inoremap <esc> EVIATIONS:
+
+" Insert newline without entering insert mode
+nnoremap <CR> o<Esc>
+nnoremap <CR> O<Esc>
+"""""""""""""""
+"ABBREVIATIONS:
 """""""""""""""
 iabbrev @@  cz.matyas@gmail.com
 iabbrev ccopy Copyright 2016 Czémán Mátyás, all rights reserved.
@@ -164,15 +206,24 @@ iabbrev tehn then
 
 
 
+"""""""""""""""
+"PLUGINS:""""""
+"""""""""""""""
 
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+
 
 "let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 
 
 "Youcompletenow I hope
 Plugin 'valloric/youcompleteme'
+
+Plugin 'christoomey/vim-tmux-navigator'
+"CTRLP
+Plugin 'ctrlpvim/ctrlp.vim'
+
 " Now we can turn our filetype functionality back on
 filetype plugin indent on
