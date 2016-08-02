@@ -1,11 +1,52 @@
+"
+"
+"
 " Welcome messages
 echom ".vimrc loaded, lets get to work!ohyeaah"
 echom ">^.^<"
 
 
+" vundle {{{1
+
+
+" needed to run vundle (but i want this anyways)
+set nocompatible
+
+" vundle needs filtype plugins off
+" i turn it on later
+filetype plugin indent off
+syntax off
+
+" set the runtime path for vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+
+" start vundle environment
+call vundle#begin()
+
+" list of plugins {{{2
+" let Vundle manage Vundle (this is required)
+"old: Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
+
+" to install a plugin add it here and run :PluginInstall.
+" to update the plugins run :PluginInstall! or :PluginUpdate
+" to delete a plugin remove it here and run :PluginClean
+" 
+
+" YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
+Plugin 'bling/vim-airline'
+
+" add plugins before this
+call vundle#end()
+
+" now (after vundle finished) it is save to turn filetype plugins on
+filetype plugin indent on
+syntax on
 set nocompatible    " be iMproved, required
 filetype off        " required
 syntax enable       " enable syntax processing
+
+
 
 
 "Add $ sign at the end of CHANGE's command workspace
@@ -73,6 +114,9 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-p> :TmuxNavigatePrevious<cr>
 
 
+"
+"
+"
 " To select previous window:
 " press <CTRL>p
 "nnoremap <C-P> <C-W><C-P>
@@ -80,13 +124,16 @@ nnoremap <silent> <C-p> :TmuxNavigatePrevious<cr>
 "Create a new empty window vertically
 nnoremap <C-N> :vnew<CR>
 "Create a new empty window horizontally
-nnoremap <C-M> :new<CR>
+nnoremap <C-m> :split<CR>
 " Open file in a new window
 nnoremap <C-B> :vnew<space>
 
 "mostly python and bash"
 
 set tabstop=4       " number of visual spaces per TAB
+
+
+
 set softtabstop=4   " number of spaces in tab when editing
 set shiftwidth=4
 set shiftround
@@ -98,6 +145,8 @@ set autoindent
 vnoremap W >gv
 vnoremap Q <gv
 
+"
+"
 " Useful settings
  set history=700
  set undolevels=700
@@ -131,14 +180,13 @@ set noswapfile
 
 set showmatch           " highlight matching [{()}]
 ":wset lazyredraw          " redraw only when we need to.
-set showmode
+set noshowmode
 "" The 'hidden' option, which allows you to re-use the same
 " window and switch from an unsaved buffer without saving it first.
 set hidden
 
 " Always display the status line, even if only one window is displayed
 set laststatus=2
-
 "Set tab label to show tab number, filename, if modified ('+' is shown if the
 "current window in the tab has been modified):
 set guitablabel=%N/\ %t\ %M
@@ -152,6 +200,14 @@ set confirm
 nnoremap <C-R> <C-W><C-R>
 
 
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"x":""}',
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ }
 " MOVEMENT SETTINGS
 
 
@@ -211,19 +267,13 @@ iabbrev tehn then
 """""""""""""""
 
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
 
 
-"let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 
-
-"Youcompletenow I hope
-Plugin 'valloric/youcompleteme'
-
-Plugin 'christoomey/vim-tmux-navigator'
-"CTRLP
-Plugin 'ctrlpvim/ctrlp.vim'
-
-" Now we can turn our filetype functionality back on
 filetype plugin indent on
+
+
+
+
+
+
