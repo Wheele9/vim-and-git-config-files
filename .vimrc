@@ -35,6 +35,19 @@ Plugin 'VundleVim/Vundle.vim'
 
 " YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'morhetz/gruvbox'
+Plugin 'chriskempson/vim-tomorrow-theme'
+
+
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
+
 
 " add plugins before this
 call vundle#end()
@@ -42,10 +55,31 @@ call vundle#end()
 " now (after vundle finished) it is save to turn filetype plugins on
 filetype plugin indent on
 syntax on
-set nocompatible    " be iMproved, required
 filetype off        " required
-syntax enable       " enable syntax processing
 
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+      let g:airline_symbols = {}
+  endif
+  let g:airline_symbols.space = "\ua0"
+  if !exists('g:airline_symbols')
+          let g:airline_symbols = {}
+            endif
+
+" unicode symbols
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '☺  '
+let g:airline_symbols.maxlinenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.branch = '⎇ '
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = 'Ξ'
 
 
 
@@ -113,10 +147,12 @@ nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-p> :TmuxNavigatePrevious<cr>
 
+" Run macro recorded at register q with Q
+nnoremap Q @q
 
-"
-"
-"
+
+
+
 " To select previous window:
 " press <CTRL>p
 "nnoremap <C-P> <C-W><C-P>
@@ -251,8 +287,8 @@ nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 inoremap jk <esc>
 
 " Insert newline without entering insert mode
-nnoremap <CR> o<Esc>
-nnoremap <CR> O<Esc>
+"nnoremap <CR> o<Esc>
+"nnoremap <CR> O<Esc>
 """""""""""""""
 "ABBREVIATIONS:
 """""""""""""""
