@@ -99,6 +99,9 @@ nnoremap <C-Z> :update<CR>
 inoremap <C-Z> <esc>:update<CR>
 " to save anytime as anywhere 
 "
+" Quic exit command
+nnoremap <C-X> :wq<CR>
+inoremap <C-X> :wq<CR>
 " Move cursor to the middle of current line
 nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 
