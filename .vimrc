@@ -96,7 +96,9 @@ set showcmd
 
 " Quicksave command
 nnoremap <C-Z> :update<CR>
-
+inoremap <C-Z> <esc>:update<CR>
+" to save anytime as anywhere 
+"
 " Move cursor to the middle of current line
 nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 
@@ -278,6 +280,10 @@ nnoremap rlv :so<space>.vimrc"<CR>
 " most of the stuff is from this great site:"
 " http://dougblack.io/words/a-good-vimrc.html" i
 
+" Comment , uncomment selection
+
+vnoremap <silent> q :s/^/#/<cr>:noh<cr>
+vnoremap <silent> w :s/^#//<cr>:noh<cr>
 
 
 
@@ -298,18 +304,7 @@ iabbrev tehn then
 
 
 
-"""""""""""""""
-"PLUGINS:""""""
-"""""""""""""""
-
-
-
-
 
 filetype plugin indent on
-
-
-
-
 
 
