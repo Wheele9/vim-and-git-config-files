@@ -1,13 +1,7 @@
 "
-"
-"
 " Welcome messages
 echom ".vimrc loaded, lets get to work!ohyeaah"
 echom ">^.^<"
-
-
-" vundle {{{1
-
 
 " needed to run vundle (but i want this anyways)
 set nocompatible
@@ -32,6 +26,7 @@ Plugin 'VundleVim/Vundle.vim'
 " to update the plugins run :PluginInstall! or :PluginUpdate
 " to delete a plugin remove it here and run :PluginClean
 " 
+
 
 " YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
 Plugin 'bling/vim-airline'
@@ -101,7 +96,7 @@ inoremap <C-Z> <esc>:update<CR>
 "
 " Quic exit command
 nnoremap <C-X> :wq<CR>
-inoremap <C-X> :wq<CR>
+inoremap <C-X> <esc>:wq<CR>
 " Move cursor to the middle of current line
 nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 
@@ -121,6 +116,9 @@ set background=light
 colorscheme solarized
 
 " MULTIPLE WINDOWS SETTINGS
+
+
+
 
 set winheight=15
 
@@ -165,10 +163,12 @@ nnoremap Q @q
 "Create a new empty window vertically
 nnoremap <C-N> :vnew<CR>
 "Create a new empty window horizontally
-nnoremap <C-m> :split<CR>
+nnoremap <C-M> :new<CR>
 " Open file in a new window
 nnoremap <C-B> :vnew<space>
-
+" Change borders between spits:
+nnoremap <C-e> :2winc ><CR>
+nnoremap <C-s> :2winc +<CR>
 "mostly python and bash"
 
 set tabstop=4       " number of visual spaces per TAB
@@ -258,7 +258,7 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 " Move lines one below
 nnoremap - O<esc>j
-
+"nnoremap <CR> i<cr><esc>
 
 """""""""""""
 ""REMAPPING:"
@@ -278,7 +278,7 @@ nnoremap <F3> :so ~/.vimrc<CR>
  " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
   "reload .vimrc file
-nnoremap rlv :so<space>.vimrc"<CR>
+nnoremap rlv :so<space>~/.vimrc"<CR>
 
 " most of the stuff is from this great site:"
 " http://dougblack.io/words/a-good-vimrc.html" i
@@ -294,8 +294,7 @@ vnoremap <silent> w :s/^#//<cr>:noh<cr>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 
 inoremap jk <esc>
-
-" Insert newline without entering insert mode
+inoremap JK <esc>
 "nnoremap <CR> o<Esc>
 "nnoremap <CR> O<Esc>
 """""""""""""""
