@@ -37,9 +37,12 @@ Plugin 'tomasr/molokai'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'morhetz/gruvbox'
 Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'Valloric/YouCompleteMe'
+
 
 
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 
@@ -128,49 +131,6 @@ set winheight=15
 set splitbelow
 set splitright
 
-" different key mappings for easy navigation between splits to save
-" a keystroke. So instead of ctrl-w then j, it’s just ctrl-j:
-"nnoremap <C-J> <C-W><C-J>
-"nnoremap <C-K> <C-W><C-K>
-"nnoremap <C-L> <C-W><C-L>
-"nnoremap <C-H> <C-W><C-H>
-" To close a windows:
-" press <CTRL>c
-nnoremap <C-C> <C-W><C-C>
-
-" To close the non acive windows:
-" press <CTRL>o
-nnoremap <C-O> <C-W><C-O>
-
-let g:tmux_navigator_no_mappings = 1
-
-nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <C-p> :TmuxNavigatePrevious<cr>
-
-" Run macro recorded at register q with Q
-nnoremap Q @q
-
-
-
-
-" To select previous window:
-" press <CTRL>p
-"nnoremap <C-P> <C-W><C-P>
-
-"Create a new empty window vertically
-nnoremap <C-N> :vnew<CR>
-"Create a new empty window horizontally
-nnoremap <C-M> :new<CR>
-" Open file in a new window
-nnoremap <C-B> :vnew<space>
-" Change borders between spits:
-nnoremap <C-e> :2winc ><CR>
-nnoremap <C-s> :2winc +<CR>
-"mostly python and bash"
-
 set tabstop=4       " number of visual spaces per TAB
 
 
@@ -237,6 +197,49 @@ set guitablabel=%N/\ %t\ %M
 " dialogue asking if you wish to save changed files.
 set confirm
 
+" different key mappings for easy navigation between splits to save
+" a keystroke. So instead of ctrl-w then j, it’s just ctrl-j:
+"nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-L> <C-W><C-L>
+"nnoremap <C-H> <C-W><C-H>
+" To close a windows:
+" press <CTRL>c
+nnoremap <C-C> <C-W><C-C>
+
+" To close the non acive windows:
+" press <CTRL>o
+nnoremap <C-O> <C-W><C-O>
+
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-p> :TmuxNavigatePrevious<cr>
+
+" Run macro recorded at register q with Q
+nnoremap Q @q
+
+
+
+
+" To select previous window:
+" press <CTRL>p
+"nnoremap <C-P> <C-W><C-P>
+
+"Create a new empty window vertically
+nnoremap <C-N> :vnew<CR>
+"Create a new empty window horizontally
+nnoremap <C-M> :new<CR>
+" Open file in a new window
+nnoremap <C-B> :vnew<space>
+" Change borders between spits:
+nnoremap <C-e> :2winc ><CR>
+nnoremap <C-s> :2winc +<CR>
+"mostly python and bash"
+
 "Rotate the windows upwards/leftwards.
 nnoremap <C-R> <C-W><C-R>
 
@@ -267,7 +270,14 @@ nnoremap - O<esc>j
 "move vertically by visual line
 nnoremap j gj
 nnoremap k gk
-
+"search and r"eplace stuff
+" highlights all instance of word under cursos
+" you can go to the newxt with n, to the prev one with N.
+nnoremap n *
+" turn off highlighting with m
+nnoremap m :nohl<CR>
+" start typing the seached word after s
+nnoremap s /
 
 "nnoremap lr
 nnoremap <F4> :ls<CR>
@@ -288,7 +298,7 @@ nnoremap rlv :so<space>~/.vimrc"<CR>
 vnoremap <silent> q :s/^/#/<cr>:noh<cr>
 vnoremap <silent> w :s/^#//<cr>:noh<cr>
 
-
+vnoremap // y/<C-R>"<CR>
 
 " Vim will surround the word in double quotes!
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
