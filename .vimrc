@@ -283,7 +283,7 @@ nnoremap s /
 nnoremap <F4> :ls<CR>
 nnoremap <F2> :echo 'Current time is ' . strftime('%c')<CR>
 nnoremap <F3> :so ~/.vimrc<CR>
-
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
  " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
