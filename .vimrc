@@ -305,8 +305,19 @@ nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 
 inoremap jk <esc>
 inoremap JK <esc>
-"nnoremap <CR> o<Esc>
 "nnoremap <CR> O<Esc>
+"nnoremap <CR> o<Esc>
+
+"Move lines, or selection of lines:
+" move line below
+nnoremap <C-j> :m .+1<CR>==
+" move line up one line
+nnoremap <C-k> :m .-2<CR>==
+" move selection of lines
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
+
 """""""""""""""
 "ABBREVIATIONS:
 """""""""""""""
