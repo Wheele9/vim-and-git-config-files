@@ -279,16 +279,16 @@ nnoremap m :nohl<CR>
 " start typing the seached word after s
 nnoremap s /
 
-"nnoremap lr
-nnoremap <F4> :ls<CR>
-nnoremap <F2> :echo 'Current time is ' . strftime('%c')<CR>
+" Load .vimrc file to edit
+nnoremap <F2> :e $MYVIMRC
+" Reload .vimrc file
 nnoremap <F3> :so ~/.vimrc<CR>
+nnoremap <F4> :ls<CR>
+" Remove trailing whitespaces
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
  " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
-  "reload .vimrc file
-nnoremap rlv :so<space>~/.vimrc"<CR>
 
 " most of the stuff is from this great site:"
 " http://dougblack.io/words/a-good-vimrc.html" i
@@ -301,12 +301,12 @@ vnoremap <silent> w :s/^#//<cr>:noh<cr>
 vnoremap // y/<C-R>"<CR>
 
 " Vim will surround the word in double quotes!
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+nnoremap <leader>s viw<esc>a"<esc>hbi"<esc>lel
+" Vim will surround the word with a parenthesis!
+nnoremap <leader>p viw<esc>a)<esc>hbi(<esc>lel
 
 inoremap jk <esc>
 inoremap JK <esc>
-"nnoremap <CR> O<Esc>
-"nnoremap <CR> o<Esc>
 
 "Move lines, or selection of lines:
 " move line below
