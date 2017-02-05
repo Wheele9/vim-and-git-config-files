@@ -280,7 +280,7 @@ nnoremap m :nohl<CR>
 nnoremap s /
 
 " Load .vimrc file to edit
-nnoremap <F2> :e $MYVIMRC
+nnoremap <F2> :e $MYVIMRC<CR>
 " Reload .vimrc file
 nnoremap <F3> :so ~/.vimrc<CR>
 nnoremap <F4> :ls<CR>
@@ -310,12 +310,13 @@ inoremap JK <esc>
 
 "Move lines, or selection of lines:
 " move line below
-nnoremap <C-j> :m .+1<CR>==
 " move line up one line
-nnoremap <C-k> :m .-2<CR>==
+nnoremap <S-k> :m .-2<CR>==
+nnoremap <S-j> :m .+1<CR>==
 " move selection of lines
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
+vnoremap <S-k> :m '<-2<CR>gv=gv
+vnoremap <S-j> :m '>+1<CR>gv=gv
+
 
 
 """""""""""""""
