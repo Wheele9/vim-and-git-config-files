@@ -99,6 +99,7 @@ inoremap <C-Z> <esc>:update<CR>
 "
 " Quic exit command
 nnoremap <C-X> :wq<CR>
+"nnoremap <C-X> :w !sudo tee %<CR>
 inoremap <C-X> <esc>:wq<CR>
 " Move cursor to the middle of current line
 nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
@@ -131,12 +132,12 @@ set winheight=15
 set splitbelow
 set splitright
 
-set tabstop=4       " number of visual spaces per TAB
 
+autocmd FileType python set tabstop=4|set shiftwidth=4
+autocmd FileType javascript set tabstop=2|set shiftwidth=2
 
 
 set softtabstop=4   " number of spaces in tab when editing
-set shiftwidth=4
 set shiftround
 set expandtab       " tabs are spaces
 set colorcolumn=80
@@ -222,27 +223,22 @@ nnoremap <silent> <C-p> :TmuxNavigatePrevious<cr>
 " Run macro recorded at register q with Q
 nnoremap Q @q
 
-
-
-
-" To select previous window:
-" press <CTRL>p
-"nnoremap <C-P> <C-W><C-P>
-
 "Create a new empty window vertically
 nnoremap <C-N> :vnew<CR>
 "Create a new empty window horizontally
 nnoremap <C-M> :new<CR>
 " Open file in a new window
 nnoremap <C-B> :vnew<space>
-" Change borders between spits:
-nnoremap <C-e> :2winc ><CR>
-nnoremap <C-s> :2winc +<CR>
 "mostly python and bash"
 
 "Rotate the windows upwards/leftwards.
 nnoremap <C-R> <C-W><C-R>
 
+" resize spits"
+nnoremap  <S-h> :vertical resize -1<CR>
+nnoremap  <S-l> :vertical resize +1<CR>
+nnoremap  <S-u> :resize +1<CR>
+nnoremap  <S-d> :resize -1<CR>
 
 let g:lightline = {
       \ 'colorscheme': 'wombat',
@@ -294,7 +290,6 @@ nnoremap <leader><space> :nohlsearch<CR>
 " http://dougblack.io/words/a-good-vimrc.html" i
 
 " Comment , uncomment selection
-
 vnoremap <silent> q :s/^/#/<cr>:noh<cr>
 vnoremap <silent> w :s/^#//<cr>:noh<cr>
 
@@ -317,8 +312,22 @@ nnoremap <S-j> :m .+1<CR>==
 vnoremap <S-k> :m '<-2<CR>gv=gv
 vnoremap <S-j> :m '>+1<CR>gv=gv
 
+" close parenthesis automatically
+inoremap {      {}<Left>
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap {{     {
+inoremap {}     {}
+inoremap (      ()<Left>
+inoremap (<CR>  (<CR>)<Esc>O
+inoremap ((     (
+inoremap ()     ()
+inoremap [      []<Left>
+inoremap [<CR>  [<CR>]<Esc>O
+inoremap [[     [
+inoremap []     []
 
-
+" add ":" to the end and go to the next line to insert
+nnoremap z A:<Esc>o<CR>
 """""""""""""""
 "ABBREVIATIONS:
 """""""""""""""
@@ -326,9 +335,5 @@ iabbrev @@  cz.matyas@gmail.com
 iabbrev ccopy Copyright 2016 Czémán Mátyás, all rights reserved.
 iabbrev tehn then
 
-
-
-
 filetype plugin indent on
-
 
