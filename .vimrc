@@ -1,6 +1,6 @@
 "
 " Welcome messages
-echom ".vimrc loaded, lets get to work!ohyeaah"
+echom ".vimrc loaded, lets get to work!"
 echom ">^.^<"
 
 " needed to run vundle (but i want this anyways)
@@ -28,24 +28,15 @@ Plugin 'VundleVim/Vundle.vim'
 " 
 
 
+
 " YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'morhetz/gruvbox'
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'Valloric/YouCompleteMe'
-
-
-
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
-
 
 " add plugins before this
 call vundle#end()
@@ -90,11 +81,10 @@ set backspace=2
 " Show commands in bottom bar
 set showcmd
 
-
-
 " Quicksave command
 nnoremap <C-Z> :update<CR>
 inoremap <C-Z> <esc>:update<CR>
+vnoremap <C-Z> v:update<CR>
 " to save anytime as anywhere 
 "
 " Quic exit command
@@ -107,23 +97,20 @@ nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 
 let mapleader =" "
 let maplocalleader = "\\"
-
 " Copy Paste words
 nnoremap <leader>y yiw
 nnoremap <leader>p viw"0p
 
 imap <C-d> <C-[>diwi
 " Visual stuff
-let g:solarized_termcolors=256
+" let g:solarized_termcolors=256
 set t_Co=256
-set background=light
-colorscheme solarized
+" set background=light
+" set background=dark
+" colorscheme solarized
+colorscheme desert
 
 " MULTIPLE WINDOWS SETTINGS
-
-
-
-
 set winheight=15
 
 " More natural split opening
@@ -135,38 +122,34 @@ set splitright
 
 autocmd FileType python set tabstop=4|set shiftwidth=4
 autocmd FileType javascript set tabstop=2|set shiftwidth=2
+autocmd FileType golang set tabstop=2|set shiftwidth=2
 
 
 set softtabstop=4   " number of spaces in tab when editing
 set shiftround
 set expandtab       " tabs are spaces
-set colorcolumn=80
+" show dark column after column 80
+set colorcolumn=81
+highlight ColorColumn ctermbg=235
 set autoindent
 
 " Indent selected block by indentwidth
 vnoremap W >gv
 vnoremap Q <gv
 
-"
-"
 " Useful settings
  set history=700
  set undolevels=700
 
  " Other setting, TODO: organize
 set virtualedit=all     " can move the cursor into illegal places
-set number                      " show line numbers
+set number              " show line numbers
 set cursorline          " highlight current line
-set wildmenu            " visual autocomplete for command menu
 set ruler 
 
 " Case insensitive search options
 set ignorecase
 set smartcase
-
-
-
-
 
 
 set incsearch           " search as characters are entered
@@ -240,6 +223,9 @@ nnoremap  <S-l> :vertical resize +1<CR>
 nnoremap  <S-u> :resize +1<CR>
 nnoremap  <S-d> :resize -1<CR>
 
+" join two lines
+nnoremap <leader>j :join!<CR>
+
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'component': {
@@ -293,8 +279,6 @@ nnoremap <leader><space> :nohlsearch<CR>
 vnoremap <silent> q :s/^/#/<cr>:noh<cr>
 vnoremap <silent> w :s/^#//<cr>:noh<cr>
 
-vnoremap // y/<C-R>"<CR>
-
 " Vim will surround the word in double quotes!
 nnoremap <leader>s viw<esc>a"<esc>hbi"<esc>lel
 " Vim will surround the word with a parenthesis!
@@ -305,9 +289,9 @@ inoremap JK <esc>
 
 "Move lines, or selection of lines:
 " move line below
+nnoremap <S-j> :m .+1<CR>==
 " move line up one line
 nnoremap <S-k> :m .-2<CR>==
-nnoremap <S-j> :m .+1<CR>==
 " move selection of lines
 vnoremap <S-k> :m '<-2<CR>gv=gv
 vnoremap <S-j> :m '>+1<CR>gv=gv
@@ -323,11 +307,12 @@ inoremap ((     (
 inoremap ()     ()
 inoremap [      []<Left>
 inoremap [<CR>  [<CR>]<Esc>O
-inoremap [[     [
 inoremap []     []
+inoremap [[     [
 
 " add ":" to the end and go to the next line to insert
 nnoremap z A:<Esc>o<CR>
+nnoremap ,, A;<Esc>o
 """""""""""""""
 "ABBREVIATIONS:
 """""""""""""""
@@ -335,5 +320,13 @@ iabbrev @@  cz.matyas@gmail.com
 iabbrev ccopy Copyright 2016 Czémán Mátyás, all rights reserved.
 iabbrev tehn then
 
-filetype plugin indent on
-
+" open new files with ranger file manager"
+function RangerExplorer()
+exec "silent !ranger --choosefile=/tmp/vim_ranger_current_file " . expand("%:p:h")
+        if filereadable('/tmp/vim_ranger_current_file')
+                exec 'edit ' . system('cat /tmp/vim_ranger_current_file')
+                call system('rm /tmp/vim_ranger_current_file')
+        endif
+        redraw!
+endfun
+map <Leader>xx :call RangerExplorer()<CR>
