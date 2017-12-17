@@ -1,76 +1,38 @@
-"
 " Welcome messages
 echom ".vimrc loaded, lets get to work!"
 echom ">^.^<"
 
-" needed to run vundle (but i want this anyways)
 set nocompatible
-
-" vundle needs filtype plugins off
-" i turn it on later
 filetype plugin indent off
 syntax off
 
-" set the runtime path for vundle
-set rtp+=~/.vim/bundle/Vundle.vim
 
-" start vundle environment
-call vundle#begin()
+call plug#begin('~/.local/share/nvim/plugged')
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'nvie/vim-flake8'
+Plug 'tpope/vim-commentary'
+Plug 'iCyMind/NeoSolarized'
+" Plug 'airodactyl/neovim-ranger'
+Plug 'rbgrouleff/bclose.vim'
+Plug 'francoiscabrol/ranger.vim'
+" Initialize plugin system
+Plug 'w0rp/ale'
+call plug#end()
 
-" list of plugins {{{2
-" let Vundle manage Vundle (this is required)
-"old: Plugin 'gmarik/Vundle.vim'
-Plugin 'VundleVim/Vundle.vim'
 
-" to install a plugin add it here and run :PluginInstall.
-" to update the plugins run :PluginInstall! or :PluginUpdate
-" to delete a plugin remove it here and run :PluginClean
-" 
+map <leader>f :Ranger<CR>
+"press F7 to run flake8
 
+" AirlineTheme solarized
+let g:airline_theme='luna'
 
-
-" YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-surround'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
-Plugin 'christoomey/vim-tmux-navigator'
-
-" add plugins before this
-call vundle#end()
-
-" now (after vundle finished) it is save to turn filetype plugins on
 filetype plugin indent on
-syntax on
 filetype off        " required
 
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-      let g:airline_symbols = {}
-  endif
-  let g:airline_symbols.space = "\ua0"
-  if !exists('g:airline_symbols')
-          let g:airline_symbols = {}
-            endif
-
-" unicode symbols
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.crypt = '🔒'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '☺  '
-let g:airline_symbols.maxlinenr = '☰'
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.branch = '⎇ '
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = '∄'
-let g:airline_symbols.whitespace = 'Ξ'
-
-
+set wildmenu
 
 "Add $ sign at the end of CHANGE's command workspace
 set cpoptions=$
@@ -106,9 +68,7 @@ imap <C-d> <C-[>diwi
 " let g:solarized_termcolors=256
 set t_Co=256
 " set background=light
-" set background=dark
-" colorscheme solarized
-colorscheme desert
+
 
 " MULTIPLE WINDOWS SETTINGS
 set winheight=15
@@ -129,8 +89,6 @@ set softtabstop=4   " number of spaces in tab when editing
 set shiftround
 set expandtab       " tabs are spaces
 " show dark column after column 80
-set colorcolumn=81
-highlight ColorColumn ctermbg=235
 set autoindent
 
 " Indent selected block by indentwidth
@@ -138,8 +96,8 @@ vnoremap W >gv
 vnoremap Q <gv
 
 " Useful settings
- set history=700
- set undolevels=700
+set history=700
+set undolevels=700
 
  " Other setting, TODO: organize
 set virtualedit=all     " can move the cursor into illegal places
@@ -198,6 +156,7 @@ nnoremap <C-O> <C-W><C-O>
 let g:tmux_navigator_no_mappings = 1
 
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap  <C-g> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
@@ -223,17 +182,11 @@ nnoremap  <S-l> :vertical resize +1<CR>
 nnoremap  <S-u> :resize +1<CR>
 nnoremap  <S-d> :resize -1<CR>
 
-" join two lines
+" join two lines:
+"
+"
 nnoremap <leader>j :join!<CR>
 
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'component': {
-      \   'readonly': '%{&readonly?"x":""}',
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
-      \ }
 " MOVEMENT SETTINGS
 
 
@@ -260,29 +213,19 @@ nnoremap n *
 nnoremap m :nohl<CR>
 " start typing the seached word after s
 nnoremap s /
-
+" reload file (useful if change happebed outside of VIM))
+nnoremap <leader>r :e<CR>
 " Load .vimrc file to edit
 nnoremap <F2> :e $MYVIMRC<CR>
 " Reload .vimrc file
 nnoremap <F3> :so ~/.vimrc<CR>
 nnoremap <F4> :ls<CR>
-" Remove trailing whitespaces
-nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
  " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 
 " most of the stuff is from this great site:"
 " http://dougblack.io/words/a-good-vimrc.html" i
-
-" Comment , uncomment selection
-vnoremap <silent> q :s/^/#/<cr>:noh<cr>
-vnoremap <silent> w :s/^#//<cr>:noh<cr>
-
-" Vim will surround the word in double quotes!
-nnoremap <leader>s viw<esc>a"<esc>hbi"<esc>lel
-" Vim will surround the word with a parenthesis!
-nnoremap <leader>p viw<esc>a)<esc>hbi(<esc>lel
 
 inoremap jk <esc>
 inoremap JK <esc>
@@ -296,23 +239,6 @@ nnoremap <S-k> :m .-2<CR>==
 vnoremap <S-k> :m '<-2<CR>gv=gv
 vnoremap <S-j> :m '>+1<CR>gv=gv
 
-" close parenthesis automatically
-inoremap {      {}<Left>
-inoremap {<CR>  {<CR>}<Esc>O
-inoremap {{     {
-inoremap {}     {}
-inoremap (      ()<Left>
-inoremap (<CR>  (<CR>)<Esc>O
-inoremap ((     (
-inoremap ()     ()
-inoremap [      []<Left>
-inoremap [<CR>  [<CR>]<Esc>O
-inoremap []     []
-inoremap [[     [
-
-" add ":" to the end and go to the next line to insert
-nnoremap z A:<Esc>o<CR>
-nnoremap ,, A;<Esc>o
 """""""""""""""
 "ABBREVIATIONS:
 """""""""""""""
@@ -320,13 +246,34 @@ iabbrev @@  cz.matyas@gmail.com
 iabbrev ccopy Copyright 2016 Czémán Mátyás, all rights reserved.
 iabbrev tehn then
 
-" open new files with ranger file manager"
-function RangerExplorer()
-exec "silent !ranger --choosefile=/tmp/vim_ranger_current_file " . expand("%:p:h")
-        if filereadable('/tmp/vim_ranger_current_file')
-                exec 'edit ' . system('cat /tmp/vim_ranger_current_file')
-                call system('rm /tmp/vim_ranger_current_file')
-        endif
-        redraw!
-endfun
-map <Leader>xx :call RangerExplorer()<CR>
+syntax on
+highlight ColorColumn ctermbg=235
+set colorcolumn=81
+
+" slimux settings"
+" send lines to other panes, works within vim, and within tmux too
+map <Leader>s :SlimuxREPLSendLine<CR>
+vmap <Leader>s :SlimuxREPLSendSelection<CR>
+
+set termguicolors
+colorscheme NeoSolarized
+set background=dark
+let g:neosolarized_contrast = "normal"            
+
+" Special characters such as trailing whitespace, tabs, newlines, when displayed 
+" using ":set list" can be set to one of three levels depending on your needs. 
+" Default value is "normal". Provide "high" and "low" options.
+let g:neosolarized_visibility = "high"
+
+" I make vertSplitBar a transparent background color. If you like the origin solarized vertSplitBar
+" style more, set this value to 0.
+let g:neosolarized_vertSplitBgTrans = 1
+
+" If you wish to enable/disable NeoSolarized from displaying bold, underlined or italicized 
+" typefaces, simply assign 1 or 0 to the appropriate variable. Default values:  
+let g:neosolarized_bold = 1                
+let g:ale_set_highlights = 0
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+" use tab to forward cycle
+" C-n to select between options 
