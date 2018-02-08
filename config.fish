@@ -10,6 +10,10 @@ source (conda info --root)/etc/fish/conf.d/conda.fish
 
 
 alias p "python"
+alias ncmp "ncmpcpp -b ~/.config/ncmpcpp/bindings"
+alias sx "/usr/share/doc/ranger/examples/rifle_sxiv.sh"
+alias r "sudo R"
+alias R "sudo R"
 alias df "df -hT"
 alias bp "bpython"
 alias coin "python .coin.py"
@@ -40,6 +44,7 @@ alias zvim '/usr/bin/zsh; nvim'
 alias cfb 'nvim ~/.bashrc'
 alias cfa 'nvim ~/.bash_aliases'
 alias cfr 'nvim ~/.config/ranger/rc.conf'
+alias cfi 'nvim ~/.config/i3/config'
 alias cff 'nvim ~/.config/fish/config.fish'
 alias cft 'nvim ~/.tmux.conf'
 
