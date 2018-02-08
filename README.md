@@ -1,4 +1,4 @@
-# .vimrc and .gitconfig files
+# Linux config files
 
-My .vimrc file, focused on bash and python development.
-My .gitconfig file, really basic stuff, couple of aliases.
+vim, git, tmux, ranger, ncmpcpp, mpd, calcurse, fish, bash, i3, 
+
