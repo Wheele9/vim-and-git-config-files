@@ -7,7 +7,7 @@ filetype plugin indent off
 syntax off
 
 
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.config/nvim')
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'bling/vim-airline'
@@ -59,16 +59,15 @@ nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 
 let mapleader =" "
 let maplocalleader = "\\"
-" Copy Paste words
-nnoremap <leader>y yiw
-nnoremap <leader>p viw"0p
+"delete,  copy, paste words
+nnoremap dw daw
+nnoremap yw yiw
 
 imap <C-d> <C-[>diwi
 " Visual stuff
 " let g:solarized_termcolors=256
 set t_Co=256
 " set background=light
-
 
 " MULTIPLE WINDOWS SETTINGS
 set winheight=15
@@ -183,20 +182,15 @@ nnoremap  <S-u> :resize +1<CR>
 nnoremap  <S-d> :resize -1<CR>
 
 " join two lines:
-"
-"
 nnoremap <leader>j :join!<CR>
 
 " MOVEMENT SETTINGS
 
 
-" Edit ~/.vimrc in a new slit:
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 
 " Move lines one below
 nnoremap - O<esc>j
-"nnoremap <CR> i<cr><esc>
 
 """""""""""""
 ""REMAPPING:"
@@ -205,6 +199,10 @@ nnoremap - O<esc>j
 "move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+
+"toggle whole word case
+nnoremap tw g~iw
+
 "search and r"eplace stuff
 " highlights all instance of word under cursos
 " you can go to the newxt with n, to the prev one with N.
@@ -218,8 +216,10 @@ nnoremap <leader>r :e<CR>
 " Load .vimrc file to edit
 nnoremap <F2> :e $MYVIMRC<CR>
 " Reload .vimrc file
-nnoremap <F3> :so ~/.vimrc<CR>
+nnoremap <F3> :so $MYVIMRC<CR>
 nnoremap <F4> :ls<CR>
+" Edit ~/.vimrc in a new slit:
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
  " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
